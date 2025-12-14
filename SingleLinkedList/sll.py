@@ -58,16 +58,50 @@ class SingleLinkedList:
                 self.tail = current_node
                 self.tail.next = None #type: ignore
                 return data
+            
+    def remove(self, position):
+        if position == 0:
+            if self.head == self.tail:
+                self.head = None
+                self.tail = None
+            else:
+                self.head = self.head.next #type: ignore
+        else:
+            current_node = self.head
+            index = 0
+            while index < position - 1:
+                current_node = current_node.next #type: ignore
+                index += 1
+            next_node = current_node.next #type: ignore
+            current_node.next = next_node.next #type: ignore
+            
+    def triverse(self):
+        if self.head is None:
+            print("There are no values to triverse over")
+        else:
+            current_node = self.head
+            while current_node is not None:
+                print(current_node.data)
+                current_node = current_node.next
+                
+    def find(self, value):
+        current_node = self.head
+        index = 0
+        while current_node is not None:
+            if current_node.data == value:
+                return f"{value} is present at the index of {index}"
+            current_node = current_node.next
+            index += 1
+        return ValueError("The value you searh are not present in the list")
+                
+            
     
     
 sll = SingleLinkedList()
 sll.append(23)
+sll.append(235)
 sll.append(34)
-sll.append(64)
-sll.pop()
-sll.pop()
-sll.pop()
-sll.pop()
-values = [node.data for node in sll]
-print(values)
+sll.append(34)
+sll.triverse()
+print(sll.find(23))
         
