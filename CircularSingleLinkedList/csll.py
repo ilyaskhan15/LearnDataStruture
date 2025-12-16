@@ -121,6 +121,19 @@ class CircularSingleLinkedList:
             return "Empty list"
         values = [str(node.data) for node in self]
         return " -> ".join(values) + " -> (back to head)"
+    
+    def find_value(self, value):
+        node = self.head
+        if node is None:
+            return "The value are not present in the list"
+        else:
+            while node:
+                if node.data == value:
+                    return node.data
+                node = node.next
+                if self.tail is not None and node == self.tail.next: 
+                    return "The value are not present in the list"
+                
 
 
 # Test the corrected code
@@ -131,26 +144,6 @@ csll.insert(0, 5343)
 csll.insert(1, 6433)
 csll.insert(3, 9433)
 
-print("After inserts:", csll.display())
-
-# Test popping
-print("\nPopping nodes:")
-popped = csll.pop()
-print(f"Popped: {popped.data if popped else 'None'}")
-
-popped = csll.pop()
-print(f"Popped: {popped.data if popped else 'None'}")
-
-popped = csll.pop()
-print(f"Popped: {popped.data if popped else 'None'}")
-
-popped = csll.pop()
-print(f"Popped: {popped.data if popped else 'None'}")
-
-popped = csll.pop()
-print(f"Popped: {popped.data if popped else 'None'}")
-
-popped = csll.pop()  # Should return None
-print(f"Popped from empty list: {popped}")
-
-print("\nFinal list:", csll.display())
+print(csll.display())
+print(csll.find_value(142))
+print(csll.find_value(6433))
