@@ -14,7 +14,7 @@ class CircularDoubleLinkedList:
 
     def __iter__(self) -> Iterator[Node]:
         if self.head is None:
-            return iter(())
+            return
 
         node: Node = self.head
         assert node is not None
